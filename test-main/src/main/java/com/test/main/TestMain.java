@@ -6,17 +6,21 @@ package com.test.main;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * Start da aplicação
  * @author esdrastavares
  *
  */
+
 @SpringBootApplication
-@ComponentScan({
-	"com.test.api"
-})
+@ComponentScan({"com.test.api","com.test.model.api.services" })
+@EntityScan("com.test.model.api.model")
+@EnableJpaRepositories("com.test.model.api.repositories")
 public class TestMain {
 
 	public static void main(String[] args) {

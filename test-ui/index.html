@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>  
+
+    
+    <script src="resources/dashboard-controller.js"></script>
+    <script src="resources/usuario-service.js"></script>
+    
+    <meta charset="UTF-8">
+
+</head>
+
+<body ng-app="mainApp" data-ng-controller="usuarioController">
+    
+    
+    <div class="alert alert-success"  ng-show="messageSucesso"  role="alert">{{message}}</div>
+    <div class="alert alert-danger"   ng-show="messageErro" role="alert">{{message}}</div>    
+    
+    
+    <div  ng-show="showListaUsuarios"  >
+    
+        <h1 class="page-header">Lista de Usuarios</h1>
+     
+    
+        <table  class="table table-bordered table-striped ">
+            
+            <thead>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Sexo</th>
+                <th>Acoes</th>
+                
+            </thead>  
+            
+          <tr ng-repeat="usuario in listaUsuarios">
+            <td>{{ usuario.id }}</td>
+            <td>{{ usuario.nome }}</td>
+            <td>{{ usuario.email }}</td>
+            <td>{{ usuario.telefone }}</td>
+            <td>{{ usuario.sexo }}</td>
+            <td> 
+                <button type="button" class="btn btn-success"  ng-click="editarUsuario(usuario)"  >Editar</button> 
+                <button type="button" class="btn btn-danger"  ng-click="excluirUsuario(usuario)" >Excluir</button>
+            </td>
+          </tr>
+        </table>    
+    
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-primary"  ng-click="adicionarUsuario()" >Adicionar</button> 
+        </div>
+        
+    
+    </div>    
+    
+    <div ng-show="showEditUsuario">
+        <h1 class="page-header">Editar Usuario</h1>
+        
+        
+            <form class="form-horizontal">
+                
+              <div class="form-group">
+                <label  class="col-sm-2 control-label">Nome</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" ng-model="usuario.nome" placeholder="Nome">
+                </div>
+              </div>
+                
+              <div class="form-group">
+                <label  class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" ng-model="usuario.email"  placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group">
+                <label  class="col-sm-2 control-label">Telefone</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control"  ng-model="usuario.telefone" placeholder="Telefone">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button class="btn btn-default"  ng-click="salvarUsuario(usuario)"  >Salvar</button>
+                  <button class="btn btn btn-primary"  ng-click="voltar()"  >Voltar</button>
+                </div>
+              </div>
+            </form>        
+        
+        
+        
+        
+    </div>
+        
+</body>
+</html>
